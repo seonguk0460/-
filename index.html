@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>철갑상어농장 — 7년을 기르는 정직한 프리미엄</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Noto+Serif+KR:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+  :root{
+    --ink:#16140F;
+    --cream:#F4F0E6;
+    --paper:#EAE3D3;
+    --slate:#4E635B;
+    --slate-deep:#384A44;
+    --slate-soft:#7D8F88;
+    --seal:#9A2C28;
+    --hair:#D5CAB3;
+    --hair-d:#C3B89E;
+    --muted:#6E6557;
+    --serif:"Noto Serif KR", serif;
+    --lat:"Fraunces", serif;
+    --sans:"Pretendard", system-ui, sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--cream);color:var(--ink);font-family:var(--sans);
+    -webkit-font-smoothing:antialiased;line-height:1.7;overflow-x:hidden}
+  ::selection{background:var(--slate);color:var(--cream)}
+  img{display:block;max-width:100%}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 36px}
+  .narrow{max-width:760px}
+  .eyebrow{font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:var(--slate);font-weight:600}
+
+  /* 七年 인장 — 인증 액센트 */
+  .seal{display:inline-grid;place-items:center;width:var(--s,52px);height:var(--s,52px);
+    border:1.4px solid var(--seal);border-radius:5px;color:var(--seal);
+    font-family:var(--serif);font-weight:600;line-height:.9;flex:none}
+  .seal i{font-style:normal;font-size:calc(var(--s,52px)*.32);display:block;text-align:center}
+
+  /* 헤더 */
+  header.bar{position:fixed;top:0;left:0;right:0;z-index:100;transition:background .3s,border-color .3s}
+  header.bar.scrolled{background:color-mix(in srgb,var(--cream) 90%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--hair)}
+  .bar-in{display:flex;align-items:center;justify-content:space-between;height:72px}
+  .brand{display:flex;align-items:center;gap:12px}
+  .brand .mk{width:30px;height:30px;border:1.4px solid currentColor;border-radius:50%;display:grid;place-items:center;font-family:var(--serif);font-size:13px;font-weight:600}
+  .brand b{font-family:var(--serif);font-weight:600;font-size:17px;letter-spacing:.02em}
+  nav.main{display:flex;gap:30px;align-items:center}
+  nav.main a{font-size:13.5px;font-weight:500;opacity:.74;transition:opacity .2s}
+  nav.main a:hover{opacity:1}
+  nav.main a.cta{opacity:1;border:1.3px solid currentColor;padding:9px 18px;border-radius:3px;font-weight:600}
+  header.bar.light .brand,header.bar.light nav.main a{color:var(--cream)}
+  header.bar.scrolled .brand,header.bar.scrolled nav.main a{color:var(--ink)}
+  .burger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:0;padding:8px}
+  .burger span{width:24px;height:1.5px;background:currentColor;transition:.3s}
+
+  /* 히어로 — 풀블리드 사진 + 세로 한자(HIGASHIYA 문법) */
+  .hero{position:relative;min-height:100vh;display:flex;align-items:flex-end;color:var(--cream);overflow:hidden}
+  .hero .bg{position:absolute;inset:0;z-index:0}
+  .hero .bg img{width:100%;height:100%;object-fit:cover;filter:brightness(.62) saturate(.9)}
+  .hero .bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(22,20,15,.5) 0%,rgba(22,20,15,.12) 40%,rgba(22,20,15,.72) 100%)}
+  .hero .inner{position:relative;z-index:2;width:100%;padding-bottom:84px}
+  .hero .vlabel{position:absolute;top:120px;right:40px;z-index:2;writing-mode:vertical-rl;font-family:var(--serif);font-weight:300;font-size:15px;letter-spacing:.5em;color:rgba(244,240,230,.82)}
+  .hero .kick{display:flex;align-items:center;gap:14px;margin-bottom:26px}
+  .hero .kick .ln{width:48px;height:1px;background:rgba(244,240,230,.6)}
+  .hero .kick .eyebrow{color:rgba(244,240,230,.92)}
+  .hero h1{font-family:var(--serif);font-weight:300;font-size:clamp(36px,5.8vw,68px);line-height:1.24;letter-spacing:-.01em;text-shadow:0 1px 30px rgba(0,0,0,.3);word-break:keep-all}
+  .hero h1 em{font-style:normal;font-weight:500}
+  .hero .lede{margin-top:26px;max-width:44ch;font-size:17px;color:rgba(244,240,230,.9);line-height:1.75}
+  .hero .scroll{margin-top:48px;display:flex;align-items:center;gap:12px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:rgba(244,240,230,.7)}
+  .hero .scroll .dot{width:5px;height:5px;border-radius:50%;background:var(--cream);animation:pulse 2s infinite}
+  @keyframes pulse{0%,100%{opacity:.4}50%{opacity:1}}
+
+  /* 신뢰 한 줄 띠 (Regiis/Kettl 문법: "직접 키운다") */
+  .creed{background:var(--ink);color:var(--cream);padding:0}
+  .creed .wrap{padding-top:84px;padding-bottom:84px}
+  .creed p{font-family:var(--serif);font-weight:300;font-size:clamp(22px,3.2vw,34px);line-height:1.55;letter-spacing:-.01em;max-width:24ch}
+  .creed p em{font-style:normal;color:var(--slate-soft);font-weight:500}
+  .creed .sig{margin-top:36px;display:flex;align-items:center;gap:16px}
+  .creed .sig .ln{width:40px;height:1px;background:var(--slate-soft)}
+  .creed .sig span{font-size:13px;letter-spacing:.04em;color:rgba(244,240,230,.7)}
+  .creed .sig b{font-family:var(--serif);color:var(--cream);font-weight:500}
+
+  /* creed 전용 모션 — 블록은 고정, 텍스트 내부에서만 동적 */
+  .creed .w{display:inline-block;opacity:0;filter:blur(6px);transform:translateZ(0)}
+  @media (prefers-reduced-motion:no-preference){
+    .creed .w{transition:opacity .9s var(--ease-soft),filter .9s var(--ease-soft)}
+  }
+  .creed.in .w{opacity:1;filter:blur(0)}
+  /* em — 슬로우 강조: 차오른 뒤 밑줄이 그려짐 */
+  .creed p em{position:relative}
+  .creed p em::after{content:"";position:absolute;left:0;bottom:-2px;width:100%;height:1px;
+    background:var(--slate-soft);transform:scaleX(0);transform-origin:0 50%}
+  @media (prefers-reduced-motion:no-preference){
+    .creed p em::after{transition:transform .8s var(--ease-out)}
+  }
+  .creed.in p em::after{transform:scaleX(1)}
+  .creed.in p em:nth-of-type(1)::after{transition-delay:1.1s}
+  .creed.in p em:nth-of-type(2)::after{transition-delay:1.35s}
+  /* 서명 라인 가로 확장 + 텍스트 페이드 (제자리) */
+  .creed .sig{opacity:1}
+  .creed .sig .ln{width:0;transition:width 1s var(--ease-out) 1.2s}
+  .creed.in .sig .ln{width:40px}
+  .creed .sig span{opacity:0;transition:opacity .9s ease 1.4s}
+  .creed.in .sig span{opacity:1}
+  @media (prefers-reduced-motion:reduce){
+    .creed .w{opacity:1;filter:none}
+    .creed .sig .ln{width:40px}.creed .sig span{opacity:1}
+    .creed p em::after{transform:scaleX(1)}
+  }
+
+  /* 섹션 공통 */
+  .section{padding:120px 0}
+  .alt{background:var(--paper)}
+  .sec-head{display:flex;align-items:baseline;gap:18px;margin-bottom:16px;flex-wrap:wrap}
+  .sec-head .seal{--s:38px;align-self:center}
+  .sec-head h2{font-family:var(--serif);font-weight:400;font-size:clamp(28px,3.8vw,42px);letter-spacing:-.015em;line-height:1.25}
+  .sec-head h2 em{font-style:normal;color:var(--slate)}
+  .sec-sub{color:var(--muted);max-width:56ch;font-size:16px;margin-bottom:60px}
+
+  /* 七年 타임라인 — 시그니처 */
+  .ruler{border-top:1.5px solid var(--ink);padding-top:24px}
+  .ruler .years{display:grid;grid-template-columns:repeat(7,1fr)}
+  .ruler .yr{position:relative;padding-right:14px}
+  .ruler .yr::before{content:"";position:absolute;top:-25px;left:0;width:1.5px;height:13px;background:var(--ink)}
+  .ruler .yr.key::before{height:22px;top:-33px;background:var(--seal);width:2px}
+  .ruler .n{font-family:var(--lat);font-weight:300;font-size:clamp(28px,4.6vw,56px);line-height:1;color:var(--slate)}
+  .ruler .yr.key .n{color:var(--seal)}
+  .ruler .t{margin-top:12px;font-size:12.5px;color:var(--muted);line-height:1.5;font-weight:500}
+  .ruler .cap{margin-top:32px;display:flex;justify-content:space-between;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--slate);font-weight:600}
+  .bignum{margin-top:72px;display:grid;grid-template-columns:auto 1fr;gap:34px;align-items:center;border-top:1px solid var(--hair-d);padding-top:36px}
+  .bignum b{font-family:var(--lat);font-weight:200;font-size:clamp(56px,11vw,128px);line-height:.82;color:var(--ink);letter-spacing:-.02em}
+  .bignum b small{font-family:var(--serif);font-size:.22em;color:var(--muted);font-weight:400;letter-spacing:0}
+  .bignum .u{font-family:var(--serif);font-size:18px;color:var(--muted);max-width:35ch;line-height:1.7}
+
+  /* 생산자 — 풀블리드 사진 + 인용 (Kettl 생산자 실명 문법) */
+  .maker-sec{position:relative;background:var(--ink);color:var(--cream);overflow:hidden}
+  .maker-grid{display:grid;grid-template-columns:1fr 1fr;min-height:680px}
+  .maker-grid .photo{position:relative}
+  .maker-grid .photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .maker-grid .copy{display:flex;flex-direction:column;justify-content:center;padding:80px 64px}
+  .maker-grid .eyebrow{color:var(--slate-soft)}
+  .maker-grid .quote{font-family:var(--serif);font-weight:300;font-size:clamp(23px,2.9vw,33px);line-height:1.5;letter-spacing:-.01em;margin-top:26px}
+  .maker-grid .quote em{font-style:normal;color:var(--slate-soft);font-weight:500}
+  .maker-grid .by{margin-top:34px;display:flex;align-items:center;gap:16px}
+  .maker-grid .by .ln{width:34px;height:1px;background:var(--slate-soft)}
+  .maker-grid .by .nm{font-family:var(--serif);font-weight:600;font-size:17px}
+  .maker-grid .by .ti{font-size:13px;color:rgba(244,240,230,.66);margin-top:2px}
+
+  /* 테루아 — 3컬럼 + 사진 */
+  .terroir-photos{display:grid;grid-template-columns:1.4fr 1fr;gap:14px;margin-bottom:72px}
+  .terroir-photos .ph{position:relative;overflow:hidden;border-radius:2px}
+  .terroir-photos .ph img{width:100%;height:100%;object-fit:cover;aspect-ratio:16/10}
+  .terroir-photos .stack{display:grid;grid-template-rows:1fr 1fr;gap:14px}
+  .terroir-photos .stack img{aspect-ratio:auto}
+  .tcols{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1.5px solid var(--ink)}
+  .tcols .c{padding:30px 28px 0 10px;border-right:1px solid var(--hair-d)}
+  .tcols .c:last-child{border-right:0;padding-right:0}
+  .tcols .c .h{font-family:var(--serif);font-weight:500;font-size:21px;margin-bottom:10px}
+  .tcols .c .h .lat{font-family:var(--lat);font-weight:300}
+  .tcols .c p{font-size:14px;color:var(--muted);line-height:1.7}
+
+  /* 제품(그레이드) — B2C 아님: '제품/등급 소개'만, 구매CTA 없음 */
+  .grades{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+  .grade{background:var(--cream);border:1px solid var(--hair-d);border-radius:3px;overflow:hidden;display:flex;flex-direction:column}
+  .alt .grade{background:#fff}
+  .grade .img{position:relative;aspect-ratio:4/3;overflow:hidden;background:var(--ink)}
+  .grade .img img{width:100%;height:100%;object-fit:cover}
+  .grade .body{padding:26px 24px 30px}
+  .grade .tier{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--seal);font-weight:600}
+  .grade h4{font-family:var(--serif);font-weight:600;font-size:20px;margin:8px 0 10px}
+  .grade p{font-size:13.5px;color:var(--muted);line-height:1.65}
+  .grade .spec{margin-top:18px;padding-top:16px;border-top:1px solid var(--hair);display:flex;gap:20px;font-size:12px;color:var(--slate)}
+  .grade .spec b{font-family:var(--lat);font-size:15px;color:var(--ink);font-weight:500;display:block}
+
+  /* B2B 신뢰 + 동선 (Ippodo 'Wholesale Enquiry' 문법) */
+  .b2b{background:var(--ink);color:var(--cream)}
+  .b2b .eyebrow{color:var(--slate-soft)}
+  .b2b h2{font-family:var(--serif);font-weight:300;font-size:clamp(28px,3.8vw,44px);line-height:1.3;margin-top:16px;max-width:18ch}
+  .b2b h2 em{font-style:normal;color:var(--slate-soft);font-weight:500}
+  .b2b .sub{margin-top:22px;max-width:52ch;color:rgba(244,240,230,.74);font-size:16px}
+  .trust{margin-top:64px;display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid rgba(244,240,230,.2)}
+  .trust .it{padding:30px 26px 0 10px;border-right:1px solid rgba(244,240,230,.18)}
+  .trust .it:last-child{border-right:0;padding-right:0}
+  .trust .it .seal{--s:34px;color:var(--slate-soft);border-color:var(--slate-soft);margin-bottom:18px}
+  .trust .it h4{font-family:var(--serif);font-weight:500;font-size:16px;margin-bottom:9px}
+  .trust .it p{font-size:13px;color:rgba(244,240,230,.62);line-height:1.6}
+  .b2b .actions{margin-top:56px;display:flex;gap:16px;flex-wrap:wrap}
+  .btn{display:inline-flex;align-items:center;gap:10px;padding:16px 30px;border-radius:3px;font-weight:600;font-size:14.5px;transition:.2s}
+  .btn.primary{background:var(--cream);color:var(--ink)}
+  .btn.primary:hover{background:#fff}
+  .btn.ghost{border:1.3px solid rgba(244,240,230,.5);color:var(--cream)}
+  .btn.ghost:hover{border-color:var(--cream);background:rgba(244,240,230,.08)}
+
+  /* 컨설팅 짧은 밴드 */
+  .consult{display:grid;grid-template-columns:1fr 1fr;gap:0;align-items:stretch}
+  .consult .photo{position:relative;min-height:360px;overflow:hidden}
+  .consult .photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(.2)}
+  .consult .copy{padding:72px 56px;display:flex;flex-direction:column;justify-content:center}
+  .consult .copy h3{font-family:var(--serif);font-weight:500;font-size:clamp(24px,3vw,32px);line-height:1.35;letter-spacing:-.01em}
+  .consult .copy p{margin-top:18px;color:var(--muted);max-width:42ch;font-size:15px}
+  .consult .copy .link{margin-top:28px;display:inline-flex;align-items:center;gap:10px;font-weight:600;color:var(--slate);font-size:14.5px}
+
+  /* 푸터 */
+  footer{background:var(--paper);border-top:1px solid var(--hair-d);padding:42px 0 0px}
+  .foot-top{display:grid;grid-template-columns:minmax(360px,1.7fr) 1fr 1fr;gap:72px;align-items:center;padding-bottom:28px;border-bottom:1px solid var(--hair-d)}
+  .foot-brand{display:flex;align-items:center;gap:28px}
+  .foot-brand .seal{--s:400px;overflow:visible;border:0;border-radius:0}
+  .foot-brand .seal img{width:100%;height:100%;object-fit:contain}
+  .foot-brand .nm{font-family:var(--serif);font-weight:600;font-size:19px}
+  .foot-brand .tag{font-size:13.5px;color:var(--muted);margin-top:6px;max-width:30ch;line-height:1.6}
+  .foot-col h5{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--slate);font-weight:600;margin-bottom:16px}
+  .foot-col a{display:block;font-size:14px;color:var(--muted);margin-bottom:10px;transition:color .2s}
+  .foot-col a:hover{color:var(--ink)}
+  .foot-bot{padding-top:32px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;font-size:12px;color:var(--muted)}
+
+  .reveal{opacity:0;transform:translateY(20px)}
+  @media (prefers-reduced-motion:no-preference){
+    .reveal{transition:opacity .8s ease,transform .8s ease}
+  }
+  .reveal.in{opacity:1;transform:none}
+
+  @media (max-width:880px){
+    .wrap{padding:0 22px}
+    nav.main{display:none}
+    .burger{display:flex}
+    .maker-grid{grid-template-columns:1fr}
+    .maker-grid .photo{min-height:420px}
+    .maker-grid .copy{padding:56px 32px}
+    .terroir-photos{grid-template-columns:1fr}
+    .tcols{grid-template-columns:1fr;gap:0}
+    .tcols .c{border-right:0;border-bottom:1px solid var(--hair-d);padding:26px 0 26px 10px}
+    .grades{grid-template-columns:1fr}
+    .trust{grid-template-columns:1fr 1fr;gap:0}
+    .trust .it{border-bottom:1px solid rgba(244,240,230,.18);padding:26px 20px 26px 10px}
+    .trust .it:nth-child(2){border-right:0}
+    .consult{grid-template-columns:1fr}
+    .consult .copy{padding:48px 28px}
+    .foot-top{grid-template-columns:1fr 1fr}
+    .foot-brand{grid-column:1/-1}
+    .hero .vlabel{display:none}
+    .section{padding:88px 0}
+  }
+  @media (max-width:560px){
+    .ruler .n{font-size:21px}
+    .ruler .t{font-size:9px;padding-right:6px}
+    .trust{grid-template-columns:1fr}
+    .trust .it{border-right:0}
+    .foot-top{grid-template-columns:1fr}
+  }
+
+  /* ════════ MOTION LAYER — quiet, slow, premium ════════ */
+  :root{--ease-out:cubic-bezier(.19,1,.22,1);--ease-soft:cubic-bezier(.25,.46,.45,.94)}
+
+  /* 0. 스크롤 진행 헤어라인 */
+  .progress{position:fixed;top:0;left:0;height:2px;width:100%;z-index:200;
+    background:var(--slate);transform-origin:0 50%;transform:scaleX(0);pointer-events:none}
+
+  /* 1. 히어로 로드 시퀀스 */
+  @media (prefers-reduced-motion:no-preference){
+    .hero .bg img{transform:scale(1.09);transition:transform 8s var(--ease-out)}
+    body.loaded .hero .bg img{transform:scale(1.0)}
+    .hero .bg{opacity:0;transition:opacity 1.2s ease}
+    body.loaded .hero .bg{opacity:1}
+    .lr{display:block;overflow:hidden}
+    .lr>span{display:block;transform:translateY(110%);transition:transform 1.25s var(--ease-out)}
+    body.loaded .lr>span{transform:none}
+    body.loaded .lr:nth-child(2)>span{transition-delay:.14s}
+    .hero .kick,.hero .lede,.hero .scroll{opacity:0;transform:translateY(18px);
+      transition:opacity 1s var(--ease-soft),transform 1s var(--ease-soft)}
+    body.loaded .hero .kick{opacity:1;transform:none;transition-delay:.1s}
+    body.loaded .hero .lede{opacity:1;transform:none;transition-delay:.55s}
+    body.loaded .hero .scroll{opacity:1;transform:none;transition-delay:.85s}
+    .hero .vlabel{opacity:0;transition:opacity 1.4s ease .9s}
+    body.loaded .hero .vlabel{opacity:1}
+  }
+
+  /* 2. 패럴랙스 대상 — JS가 translateY 구동 (transform 단독 점유) */
+  [data-plx]{will-change:transform}
+  .hero .bg[data-plx] img{height:114%;margin-top:-7%}
+  .maker-grid .photo img[data-plx],.consult .photo img[data-plx]{height:116%;top:-8%}
+
+  /* 3. reveal 확장 — 형제 스태거는 JS가 transition-delay 부여 */
+  .reveal{opacity:0;transform:translateY(26px)}
+  @media (prefers-reduced-motion:no-preference){
+    .reveal{transition:opacity 1.1s var(--ease-soft),transform 1.1s var(--ease-out)}
+  }
+  .reveal.in{opacity:1;transform:none}
+
+  /* 4. 이미지 커튼 리빌 + 내부 정착(scale settle) — 패럴랙스 요소 제외 */
+  .maker-grid .photo,.consult .photo,.terroir-photos .ph,.grade .img{position:relative}
+  @media (prefers-reduced-motion:no-preference){
+    .maker-grid .photo::after,.consult .photo::after,
+    .terroir-photos .ph::after,.grade .img::after{
+      content:"";position:absolute;inset:0;background:var(--cream);z-index:3;
+      transform:scaleX(1);transform-origin:100% 50%;transition:transform 1.2s var(--ease-out)}
+    .maker-sec .photo::after{background:var(--ink)}
+    .alt .ph::after,.alt .grade .img::after{background:var(--paper)}
+    .in .ph::after,.photo.in::after,.in .img::after{transform:scaleX(0)}
+    .terroir-photos.in .ph:nth-child(1)::after{transition-delay:.05s}
+    .terroir-photos.in .stack .ph:nth-child(1)::after{transition-delay:.22s}
+    .terroir-photos.in .stack .ph:nth-child(2)::after{transition-delay:.4s}
+    .grades.in .grade:nth-child(1) .img::after{transition-delay:.05s}
+    .grades.in .grade:nth-child(2) .img::after{transition-delay:.2s}
+    .grades.in .grade:nth-child(3) .img::after{transition-delay:.35s}
+    .terroir-photos .ph img,.grade .img img{
+      transform:scale(1.08);transition:transform 1.8s var(--ease-out)}
+    .in .ph img,.in .img img{transform:scale(1)}
+  }
+
+  /* 5. 七年 타임라인 — 라인 드로잉 + 눈금 순차 점등 */
+  @media (prefers-reduced-motion:no-preference){
+    .ruler{border-top-color:transparent;background:linear-gradient(90deg,var(--ink),var(--ink)) no-repeat 0 0/0% 1.5px}
+    .ruler.in{animation:drawline 1.6s var(--ease-out) forwards}
+    @keyframes drawline{to{background-size:100% 1.5px}}
+    .ruler .yr{opacity:0;transform:translateY(14px)}
+    .ruler.in .yr{opacity:1;transform:none;transition:opacity .8s var(--ease-soft),transform .8s var(--ease-out)}
+    .ruler.in .yr:nth-child(1){transition-delay:.15s}
+    .ruler.in .yr:nth-child(2){transition-delay:.3s}
+    .ruler.in .yr:nth-child(3){transition-delay:.45s}
+    .ruler.in .yr:nth-child(4){transition-delay:.6s}
+    .ruler.in .yr:nth-child(5){transition-delay:.75s}
+    .ruler.in .yr:nth-child(6){transition-delay:.9s}
+    .ruler.in .yr:nth-child(7){transition-delay:1.05s}
+    .ruler .cap{opacity:0;transition:opacity 1s ease 1.3s}
+    .ruler.in .cap{opacity:1}
+  }
+
+  /* 6. 타이포 티커 — 천천히 흐르는 아웃라인 타이포 */
+  .ticker{overflow:hidden;background:var(--cream);padding:34px 0;border-top:1px solid var(--hair);border-bottom:1px solid var(--hair)}
+  .ticker .track{display:flex;width:max-content;animation:tick 70s linear infinite}
+  .ticker:hover .track{animation-play-state:paused}
+  .ticker span{font-family:var(--lat);font-weight:300;font-size:clamp(34px,5vw,64px);
+    letter-spacing:.04em;white-space:nowrap;padding-right:60px;
+    color:transparent;-webkit-text-stroke:1px var(--slate);opacity:.55}
+  .ticker span b{font-family:var(--serif);font-weight:500;-webkit-text-stroke:0;color:var(--slate)}
+  @keyframes tick{to{transform:translateX(-50%)}}
+  @media (prefers-reduced-motion:reduce){.ticker .track{animation:none}}
+
+  /* 7. 마이크로 인터랙션 */
+  .grade{transition:transform .5s var(--ease-out),box-shadow .5s var(--ease-out)}
+  .grade:hover{transform:translateY(-6px);box-shadow:0 18px 40px -18px rgba(22,20,15,.25)}
+  .grade .img img{transition:transform 1.2s var(--ease-out)}
+  .grade:hover .img img{transform:scale(1.05)}
+  .btn{position:relative}
+  .btn .ar{display:inline-block;transition:transform .35s var(--ease-out)}
+  .btn:hover .ar{transform:translateX(5px)}
+  nav.main a:not(.cta){position:relative}
+  nav.main a:not(.cta)::after{content:"";position:absolute;left:0;bottom:-4px;width:100%;height:1px;
+    background:currentColor;transform:scaleX(0);transform-origin:100% 50%;transition:transform .4s var(--ease-out)}
+  nav.main a:not(.cta):hover::after{transform:scaleX(1);transform-origin:0 50%}
+  .consult .copy .link .ar{display:inline-block;transition:transform .35s var(--ease-out)}
+  .consult .copy .link:hover .ar{transform:translateX(5px)}
+  .hero .scroll .dot{animation:pulse 2s infinite, drop 2s var(--ease-soft) infinite}
+  @keyframes drop{0%,100%{transform:translateY(0)}50%{transform:translateY(4px)}}
+</style>
+</head>
+<body>
+
+<div class="progress" id="progress"></div>
+<header class="bar light" id="bar">
+  <div class="wrap bar-in">
+    <a class="brand" href="#top"><span class="mk">七</span><b>철갑상어농장</b></a>
+    <nav class="main">
+      <a href="#seven">七年</a>
+      <a href="#maker">생산자</a>
+      <a href="#terroir">산지</a>
+      <a href="#product">캐비어</a>
+      <a href="#b2b" class="cta">대량납품 문의</a>
+    </nav>
+    <button class="burger" aria-label="메뉴"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="bg"><img src="images/소재_문재종 장인_2.jpeg" alt="포천 양식장에서 철갑상어를 살피는 문재종 대표"></div>
+  <div class="vlabel">七年을 기르는 정직한 프리미엄</div>
+  <div class="inner">
+    <div class="wrap">
+      <div class="kick"><span class="ln"></span><span class="eyebrow">Since 1998 · Pocheon, Hantangang</span></div>
+      <h1><span class="lr"><span>알을 모으지 않습니다.</span></span><span class="lr"><span><em>한 마리를 7년</em> 기릅니다.</span></span></h1>
+      <p class="lede">포천 한탄강의 단일 직영 양식장에서, 입식부터 채취까지 한 사람의 손으로. 유통사가 아니라 키우는 사람이 만드는 단일 원산지 캐비어.</p>
+      <div class="scroll"><span class="dot"></span> Scroll</div>
+    </div>
+  </div>
+</section>
+
+<!-- CREED (신뢰 선언) -->
+<section class="creed" id="creed">
+  <div class="wrap">
+    <p><span class="w">우리는</span> <span class="w">캐비어를</span> <em><span class="w">유통</span></em><span class="w">해</span> <span class="w">본</span> <span class="w">적이</span> <span class="w">없습니다.</span><br><span class="w">1998년부터,</span> <span class="w">단</span> <span class="w">하나의</span> <span class="w">양식장에서</span> <span class="w">직접</span> <em><span class="w">키워</span></em><span class="w">왔을</span> <span class="w">뿐입니다.</span></p>
+    <div class="sig"><span class="ln"></span><span>철갑상어농장 대표 <b>문재종</b></span></div>
+  </div>
+</section>
+
+<!-- 七年 -->
+<section class="section" id="seven">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="seal"><i>七<br>年</i></span><h2>한 병이 되기까지, <em>7년</em></h2></div>
+    <p class="sec-sub reveal">경쟁자가 가진 적 없는 단 하나의 해자(垓子)는 ‘시간’입니다. 천일염·무방부·저염은 <br> 누구나 따라 적을 수 있지만, 7년은 따라 적을 수 없습니다.</p>
+    <div class="ruler reveal">
+      <div class="years">
+        <div class="yr"><div class="n">1</div><div class="t">치어 입식</div></div>
+        <div class="yr"><div class="n">2</div><div class="t">한탄강 수계 적응</div></div>
+        <div class="yr"><div class="n">3</div><div class="t">성장 관리</div></div>
+        <div class="yr key"><div class="n">4</div><div class="t">암컷 선별</div></div>
+        <div class="yr"><div class="n">5</div><div class="t">난소 발달</div></div>
+        <div class="yr"><div class="n">6</div><div class="t">숙성 점검</div></div>
+        <div class="yr key"><div class="n">7</div><div class="t">채취 · 가공</div></div>
+      </div>
+      <div class="cap"><span>입식</span><span>七年 · 정직한 기다림</span><span>완성</span></div>
+    </div>
+    <div class="bignum reveal">
+      <b><span class="cnt" data-count="2555">0</span><small>일</small></b>
+      <span class="u">하루도 빼지 않은 7년. 그 시간을 우리는 <br> 숨기지 않고, 연차별로 기록하고 보여줍니다.</span>
+    </div>
+  </div>
+</section>
+
+<!-- 생산자 -->
+<section class="maker-sec" id="maker">
+  <div class="maker-grid">
+    <div class="photo reveal"><img data-plx="0.1" src="images/소재_양식장_4.jpg" alt="양식장에서 작업하는 모습"></div>
+    <div class="copy">
+      <span class="eyebrow reveal">The Maker · 문재종</span>
+      <p class="quote reveal">“좋은 캐비어는 <em>기술</em>이 아니라<br><em>시간</em>과 <em>매일의 점검</em>에서 나옵니다.<br>저는 25년째 같은 일을 합니다.”</p>
+      <div class="by reveal"><span class="ln"></span><div><div class="nm">문재종</div><div class="ti">철갑상어농장 대표 · 1998년 창업 · 25년 사육</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 테루아 -->
+<section class="section alt" id="terroir">
+  <div class="wrap">
+    <div class="sec-head reveal"><h2>산지가 곧 품질입니다 — <em>포천 한탄강</em></h2></div>
+    <p class="sec-sub reveal">여러 산지를 섞지 않습니다. 한 양식장, 한 사람의 손, 하나의 수계. 대체할 수 없는 물과 자리에서 7년이 쌓일 때, 그것을 테루아라 부릅니다.</p>
+    <div class="terroir-photos reveal">
+      <div class="ph"><img src="images/소재_양식장.jpg" alt="포천 한탄강 단일 직영 양식장 전경"></div>
+      <div class="stack">
+        <div class="ph"><img src="images/소재_양식장_3.jpg" alt="양식 수조 수면"></div>
+        <div class="ph"><img src="images/소재_철갑상어_3.jpg" alt="철갑상어"></div>
+      </div>
+    </div>
+    <div class="tcols reveal">
+      <div class="c"><div class="h">한탄강 수계</div><p>유네스코 세계지질공원으로 인증된 현무암 용암대지의 차고  <br> 맑은 물. 7년 사육의 토대입니다.</p></div>
+      <div class="c"><div class="h">단일 직영</div><p>입식부터 가공까지 한 양식장에서. 섞지 않은 단일 원산지(Single-Origin)를 보증합니다.</p></div>
+      <div class="c"><div class="h"><span class="lat">Since</span> 1998</div><p>같은 자리에서 25년. 시간과 장소가 함께 쌓인 자리가 곧 우리의 <br> 테루아입니다.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 제품(등급 소개 — B2C 미운영, 구매 CTA 없음) -->
+<section class="section" id="product">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="seal"><i>七<br>年</i></span><h2>단일 원산지 캐비어</h2></div>
+    <p class="sec-sub reveal">한 양식장에서 나온 알을, 알의 크기·숙성도에 따라 등급으로 나눕니다. 모든 등급은 <br> 동일한 7년과 동일한 손에서 나옵니다. (개별 판매 안내는 추후 오픈됩니다.)</p>
+    <div class="grades reveal">
+      <div class="grade">
+        <div class="img"><img src="images/소재_캐비어_2.jpg" alt="시그니처 그레이드 캐비어"></div>
+        <div class="body"><span class="tier">Reserve · 七</span><h4>칠년 리저브</h4><p>가장 오래 기다린 개체에서 선별한 최상위 등급. <br>큰 알, 깊은 풍미.</p>
+          <div class="spec"><div>숙성<b>7년+</b></div><div>입자<b>L</b></div></div></div>
+      </div>
+      <div class="grade">
+        <div class="img"><img src="images/소재_캐비어.jpg" alt="클래식 그레이드 캐비어"></div>
+        <div class="body"><span class="tier">Classic</span><h4>클래식</h4><p>철갑상어농장의 기준이 되는 등급. <br> 균형 잡힌 풍미와 또렷한 입자감.</p>
+          <div class="spec"><div>숙성<b>7년</b></div><div>입자<b>M</b></div></div></div>
+      </div>
+      <div class="grade">
+        <div class="img"><img src="images/소재_철갑상어.jpg" alt="양식장의 철갑상어"></div>
+        <div class="body"><span class="tier">Origin</span><h4>오리진</h4><p>단일 직영의 기본 라인. <br>첫 경험과 요리 활용에 권합니다.</p>
+          <div class="spec"><div>숙성<b>7년</b></div><div>입자<b>S–M</b></div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 티커 — 천천히 흐르는 브랜드 키워드 -->
+<div class="ticker" aria-hidden="true">
+  <div class="track">
+    <span>Single Farm · Farmer-Made · Since 1998 · <b>七年</b> · Pocheon Hantangang · Single-Origin Caviar · </span><span>Single Farm · Farmer-Made · Since 1998 · <b>七年</b> · Pocheon Hantangang · Single-Origin Caviar · </span>
+  </div>
+</div>
+
+<!-- B2B -->
+<section class="section b2b" id="b2b">
+  <div class="wrap">
+    <span class="eyebrow reveal">For Hotels · Omakase · Corporate</span>
+    <h2 class="reveal">셰프와 바이어는 <br> 가격이 아니라<br><em>일관성</em>을 삽니다.</h2>
+    <p class="sub reveal">단일 직영이기에 매 닙픔 단위의 품질을 추적하고 책임집니다. <br>호텔·오마카세·법인 단위 대량 납품과 정기 공급을 상담합니다.</p>
+    <div class="trust reveal">
+      <div class="it"><span class="seal"><i>七<br>年</i></span><h4>단일 직영 추적성</h4><p>모든 납품은 한 양식장에서. <br>입식·사육·채취 이력 추적 가능.</p></div>
+      <div class="it"><span class="seal"><i>七<br>年</i></span><h4>그레이드 일관성</h4><p>알 크기·염도·숙성도 등급 기준을 문서로 보증.</p></div>
+      <div class="it"><span class="seal"><i>七<br>年</i></span><h4>안정 물량</h4><p>대량·정기 납품을 위한 생산 계획·캘린더 협의.</p></div>
+      <div class="it"><span class="seal"><i>七<br>年</i></span><h4>양식 컨설팅</h4><p>25년 노하우 기반 사육·가공 기술 자문.</p></div>
+    </div>
+    <div class="actions reveal">
+      <a href="#contact" class="btn primary">대량납품 문의하기 <span class="ar">→</span></a>
+      <a href="#contact" class="btn ghost">스펙시트 · 등급표 요청</a>
+    </div>
+  </div>
+</section>
+
+<!-- 컨설팅 -->
+<section class="consult" id="consult">
+  <div class="photo reveal"><img data-plx="0.08" src="images/소재_계산기.jpg" alt="양식 컨설팅"></div>
+  <div class="copy reveal">
+    <h3>철갑상어 양식, <br>처음부터 함께 설계합니다.</h3>
+    <p>입식·수계 관리·사육 주기·가공까지 — 25년간 한 자리에서 쌓은 운영 노하우를 컨설팅으로 제공합니다. 귀어·신규 양식 사업자를 위한 단계별 자문.</p>
+    <a href="#contact" class="link">컨설팅 상담 <span class="ar">→</span></a>
+  </div>
+</section>
+
+<!-- 푸터 -->
+<footer id="contact">
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <span class="seal"><img src="images/철갑상어농장_로고_전통 엠블럼.svg" alt="철갑상어농장 로고"></span>
+      </div>
+      <div class="foot-col">
+        <h5>둘러보기</h5>
+        <a href="#seven">七年 이야기</a>
+        <a href="#maker">생산자 문재종</a>
+        <a href="#terroir">포천 한탄강</a>
+        <a href="#product">캐비어 등급</a>
+      </div>
+      <div class="foot-col">
+        <h5>거래 문의</h5>
+        <a href="#b2b">대량납품 (호텔·오마카세·법인)</a>
+        <a href="#consult">양식 컨설팅</a>
+        <a href="#">스펙시트 · 등급표 요청</a>
+        <a href="#">전화 · 이메일 문의</a>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <span>© 1998–2026 철갑상어농장 · 경기도 포천시</span>
+      <span>Single Farm · Farmer-Made · Single-Origin</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* 헤더 + 진행바 */
+  var bar=document.getElementById('bar');
+  var prog=document.getElementById('progress');
+  var hero=document.querySelector('.hero');
+  function onScroll(){
+    var y=window.scrollY;
+    bar.classList.toggle('scrolled', y>40);
+    bar.classList.toggle('light', y < hero.offsetHeight-80);
+    var max=document.documentElement.scrollHeight-innerHeight;
+    if(prog) prog.style.transform='scaleX('+(max>0?y/max:0)+')';
+  }
+  addEventListener('scroll',onScroll,{passive:true}); onScroll();
+
+  /* 히어로 로드 시퀀스 */
+  function go(){ document.body.classList.add('loaded'); }
+  if(document.readyState==='complete') setTimeout(go,80);
+  else addEventListener('load',function(){setTimeout(go,80)});
+
+  /* reveal — 같은 부모 내 형제끼리 자동 스태거 */
+  if(!reduce){
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        if(!e.isIntersecting) return;
+        var el=e.target, p=el.parentElement, i=0, c=p.firstElementChild;
+        while(c){ if(c.classList&&c.classList.contains('reveal')){ if(c===el)break; i++; } c=c.nextElementSibling; }
+        el.style.transitionDelay=(i*90)+'ms';
+        el.classList.add('in'); io.unobserve(el);
+      });
+    },{threshold:.12,rootMargin:'0px 0px -5% 0px'});
+    document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
+  } else {
+    document.querySelectorAll('.reveal').forEach(function(el){el.classList.add('in')});
+  }
+
+  /* creed — 블록 고정, 단어 단위 순차 페이드 */
+  var creed=document.getElementById('creed');
+  if(creed){
+    var ws=creed.querySelectorAll('.w');
+    ws.forEach(function(w,i){ w.style.transitionDelay=(i*70)+'ms'; });
+    if(reduce){ creed.classList.add('in'); }
+    else{
+      new IntersectionObserver(function(es,o){
+        es.forEach(function(e){ if(e.isIntersecting){ creed.classList.add('in'); o.disconnect(); } });
+      },{threshold:.35}).observe(creed);
+    }
+  }
+
+  /* 카운트업 — easeOutExpo */
+  var cnt=document.querySelector('.cnt');
+  if(cnt){
+    var fired=false;
+    new IntersectionObserver(function(es,o){
+      es.forEach(function(e){
+        if(!e.isIntersecting||fired) return; fired=true; o.disconnect();
+        var target=+cnt.dataset.count, t0=null, D=1800;
+        if(reduce){ cnt.textContent=target.toLocaleString(); return; }
+        requestAnimationFrame(function step(t){
+          if(!t0)t0=t; var p=Math.min((t-t0)/D,1);
+          var e2=p===1?1:1-Math.pow(2,-10*p);
+          cnt.textContent=Math.round(target*e2).toLocaleString();
+          if(p<1)requestAnimationFrame(step);
+        });
+      });
+    },{threshold:.4}).observe(cnt);
+  }
+
+  /* 패럴랙스 — rAF, 뷰포트 내 요소만 */
+  if(!reduce){
+    var plx=[].slice.call(document.querySelectorAll('[data-plx]'));
+    var ticking=false;
+    function frame(){
+      ticking=false;
+      plx.forEach(function(el){
+        var r=el.parentElement.getBoundingClientRect();
+        if(r.bottom<0||r.top>innerHeight) return;
+        var sp=+el.dataset.plx;
+        var c=(r.top+r.height/2-innerHeight/2);
+        el.style.transform='translateY('+(c*sp).toFixed(1)+'px)';
+      });
+    }
+    addEventListener('scroll',function(){ if(!ticking){ticking=true;requestAnimationFrame(frame);} },{passive:true});
+    frame();
+  }
+})();
+</script>
+</body>
+</html>
