@@ -69,14 +69,17 @@
   .hero .kick .eyebrow{color:rgba(244,240,230,.92)}
   .hero h1{font-family:var(--serif);font-weight:300;font-size:clamp(36px,5.8vw,68px);line-height:1.24;letter-spacing:-.01em;text-shadow:0 1px 30px rgba(0,0,0,.3);word-break:keep-all}
   .hero h1 em{font-style:normal;font-weight:500}
+  .hero h1 .river{color:var(--slate-soft)}
   .hero .lede{margin-top:26px;max-width:50ch;font-size:17px;color:rgba(244,240,230,.9);line-height:1.75}
   .hero .scroll{margin-top:48px;display:flex;align-items:center;gap:12px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:rgba(244,240,230,.7)}
   .hero .scroll .dot{width:5px;height:5px;border-radius:50%;background:var(--cream);animation:pulse 2s infinite}
   @keyframes pulse{0%,100%{opacity:.4}50%{opacity:1}}
 
   /* 신뢰 한 줄 띠 (Regiis/Kettl 문법: "직접 키운다") */
-  .creed{background:var(--ink);color:var(--cream);padding:0}
-  .creed .wrap{padding-top:84px;padding-bottom:84px}
+  .creed{position:relative;background:var(--ink);color:var(--cream);padding:0;overflow:hidden}
+  .creed .wrap{position:relative;padding-top:84px;padding-bottom:84px}
+  .creed-logo{position:absolute;right:36px;top:50%;width:clamp(180px,24vw,330px);opacity:0;transform:translateY(-50%) scale(.96);pointer-events:none}
+  .creed-logo img{width:100%;height:auto}
   .creed p{font-family:var(--serif);font-weight:300;font-size:clamp(22px,3.2vw,34px);line-height:1.55;letter-spacing:-.01em;max-width:24ch}
   .creed p em{font-style:normal;color:var(--slate-soft);font-weight:500}
   .creed .sig{margin-top:36px;display:flex;align-items:center;gap:16px}
@@ -88,7 +91,9 @@
   .creed .w{display:inline-block;opacity:0;filter:blur(6px);transform:translateZ(0)}
   @media (prefers-reduced-motion:no-preference){
     .creed .w{transition:opacity .9s var(--ease-soft),filter .9s var(--ease-soft)}
+    .creed-logo{transition:opacity 1.2s ease 2.35s,transform 1.2s var(--ease-out) 2.35s}
   }
+  .creed.in .creed-logo{opacity:1;transform:translateY(-50%) scale(1)}
   .creed.in .w{opacity:1;filter:blur(0)}
   /* em — 슬로우 강조: 차오른 뒤 밑줄이 그려짐 */
   .creed p em{position:relative}
@@ -107,6 +112,7 @@
   .creed .sig span{opacity:0;transition:opacity .9s ease 1.4s}
   .creed.in .sig span{opacity:1}
   @media (prefers-reduced-motion:reduce){
+    .creed-logo{opacity:1;transform:translateY(-50%) scale(1)}
     .creed .w{opacity:1;filter:none}
     .creed .sig .ln{width:40px}.creed .sig span{opacity:1}
     .creed p em::after{transform:scaleX(1)}
@@ -120,6 +126,7 @@
   .sec-head h2{font-family:var(--serif);font-weight:400;font-size:clamp(28px,3.8vw,42px);letter-spacing:-.015em;line-height:1.25}
   .sec-head h2 em{font-style:normal;color:var(--slate)}
   .sec-sub{color:var(--muted);max-width:56ch;font-size:16px;margin-bottom:60px}
+  .terroir-note{max-width:69ch;margin:-42px 0 60px;color:var(--muted);font-size:12.5px;line-height:1.7;opacity:.68}
 
   /* 七年 타임라인 — 시그니처 */
   .ruler{border-top:1.5px solid var(--ink);padding-top:24px}
@@ -159,7 +166,7 @@
   .tcols{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1.5px solid var(--ink)}
   .tcols .c{padding:30px 28px 0 10px;border-right:1px solid var(--hair-d)}
   .tcols .c:last-child{border-right:0;padding-right:0}
-  .tcols .c .h{font-family:var(--serif);font-weight:500;font-size:21px;margin-bottom:10px}
+  .tcols .c .h{font-family:var(--serif);font-weight:500;font-size:21px;min-height:32px;margin-bottom:10px}
   .tcols .c .h .lat{font-family:var(--lat);font-weight:300}
   .tcols .c p{font-size:14px;color:var(--muted);line-height:1.7}
 
@@ -233,6 +240,7 @@
     .terroir-photos{grid-template-columns:1fr}
     .tcols{grid-template-columns:1fr;gap:0}
     .tcols .c{border-right:0;border-bottom:1px solid var(--hair-d);padding:26px 0 26px 10px}
+    .tcols .c .h{min-height:0}
     .grades{grid-template-columns:1fr}
     .trust{grid-template-columns:1fr 1fr;gap:0}
     .trust .it{border-bottom:1px solid rgba(244,240,230,.18);padding:26px 20px 26px 10px}
@@ -241,6 +249,7 @@
     .consult .copy{padding:48px 28px}
     .foot-top{grid-template-columns:1fr 1fr}
     .foot-brand{grid-column:1/-1}
+    .creed-logo{display:none}
     .hero .vlabel{display:none}
     .section{padding:88px 0}
   }
@@ -382,7 +391,7 @@
   <div class="inner">
     <div class="wrap">
       <div class="kick"><span class="ln"></span><span class="eyebrow">Since 1998 · Pocheon, Hantangang</span></div>
-      <h1><span class="lr"><span>알을 모으지 않습니다.</span></span><span class="lr"><span><em>한 마리를 7년</em> 기릅니다.</span></span></h1>
+      <h1><span class="lr"><span>알을 모으지 않습니다.</span></span><span class="lr"><span><em>한 마리를 <span class="river">7년</span></em> 기릅니다.</span></span></h1>
       <p class="lede">포천 한탄강의 단일 직영 양식장에서, 입식부터 채취까지 한 사람의 손으로. 유통사가 아니라 키우는 사람이 만드는 단일 원산지 캐비어.</p>
       <div class="scroll"><span class="dot"></span> Scroll</div>
     </div>
@@ -392,6 +401,7 @@
 <!-- CREED (신뢰 선언) -->
 <section class="creed" id="creed">
   <div class="wrap">
+    <div class="creed-logo" aria-hidden="true"><img src="images/철갑상어농장_로고_전통 엠블럼.png" alt=""></div>
     <p><span class="w">우리는</span> <span class="w">캐비어를</span> <em><span class="w">유통</span></em><span class="w">해</span> <span class="w">본</span> <span class="w">적이</span> <span class="w">없습니다.</span><br><span class="w">1998년부터,</span> <span class="w">단</span> <span class="w">하나의</span> <span class="w">양식장에서</span> <span class="w">직접</span> <em><span class="w">키워</span></em><span class="w">왔을</span> <span class="w">뿐입니다.</span></p>
     <div class="sig"><span class="ln"></span><span>철갑상어농장 대표 <b>문재종</b></span></div>
   </div>
@@ -400,7 +410,7 @@
 <!-- 七年 -->
 <section class="section" id="seven">
   <div class="wrap">
-    <div class="sec-head reveal"><span class="seal"><i>七<br>年</i></span><h2>한 병이 되기까지, <em>7년</em></h2></div>
+    <div class="sec-head reveal"><span class="seal"><i>七<br>年</i></span><h2>한 알을 얻기까지, <em>7년</em></h2></div>
     <p class="sec-sub reveal">경쟁자가 가진 적 없는 단 하나의 해자(垓子)는 ‘시간’입니다. 천일염·무방부·저염은 <br> 누구나 따라 적을 수 있지만, 7년은 따라 적을 수 없습니다.</p>
     <div class="ruler reveal">
       <div class="years">
@@ -427,8 +437,8 @@
     <div class="photo reveal"><img data-plx="0.1" src="images/소재_양식장_4.jpg" alt="양식장에서 작업하는 모습"></div>
     <div class="copy">
       <span class="eyebrow reveal">The Maker · 문재종</span>
-      <p class="quote reveal">“좋은 캐비어는 <em>기술</em>이 아니라<br><em>시간</em>과 <em>매일의 점검</em>에서 나옵니다.<br>저는 25년째 같은 일을 합니다.”</p>
-      <div class="by reveal"><span class="ln"></span><div><div class="nm">문재종</div><div class="ti">철갑상어농장 대표 · 1998년 창업 · 25년 사육</div></div></div>
+      <p class="quote reveal">“좋은 캐비어는 <em>기술</em>이 아니라<br><em>시간</em>과 <em>매일의 점검</em>에서 나옵니다.<br>저는 28년째 같은 일을 합니다.”</p>
+      <div class="by reveal"><span class="ln"></span><div><div class="nm">문재종</div><div class="ti">철갑상어농장 대표 · 1998년 창업 · 28년 사육</div></div></div>
     </div>
   </div>
 </section>
@@ -437,7 +447,8 @@
 <section class="section alt" id="terroir">
   <div class="wrap">
     <div class="sec-head reveal"><h2>산지가 곧 품질입니다 — <em>포천 한탄강</em></h2></div>
-    <p class="sec-sub reveal">여러 산지를 섞지 않습니다. 한 양식장, 한 사람의 손, 하나의 수계. 대체할 수 없는 물과 자리에서 7년이 쌓일 때, 그것을 테루아라 부릅니다.</p>
+    <p class="sec-sub reveal">여러 산지를 섞지 않습니다. 한 양식장, 한 사람의 손, 하나의 수계. <br> 대체할 수 없는 물과 자리에서 7년이 쌓일 때, 그것을 테루아*라 부릅니다.</p>
+    <p class="terroir-note reveal">* 테루아(Terroir)는 프랑스어로 '토양'을 의미하는 단어로, <br>농작물이 자라는 자연 환경의 모든 요소와 그로 인해 농작물에 부여되는 '고유의 특성'을 뜻합니다.</p>
     <div class="terroir-photos reveal">
       <div class="ph"><img src="images/소재_양식장.jpg" alt="포천 한탄강 단일 직영 양식장 전경"></div>
       <div class="stack">
@@ -446,9 +457,9 @@
       </div>
     </div>
     <div class="tcols reveal">
-      <div class="c"><div class="h">한탄강 수계</div><p>유네스코 세계지질공원으로 인증된 현무암 용암대지의 차고  <br> 맑은 물. 7년 사육의 토대입니다.</p></div>
+      <div class="c"><div class="h">한탄강 수계</div><p>유네스코 세계지질공원으로 인증된 현무암 용암대지의 <br>차고 맑은 물. 7년 사육의 토대입니다.</p></div>
       <div class="c"><div class="h">단일 직영</div><p>입식부터 가공까지 한 양식장에서. 섞지 않은 단일 원산지(Single-Origin)를 보증합니다.</p></div>
-      <div class="c"><div class="h"><span class="lat">Since</span> 1998</div><p>같은 자리에서 25년. 시간과 장소가 함께 쌓인 자리가 곧 우리의 <br> 테루아입니다.</p></div>
+      <div class="c"><div class="h"><span class="lat">Since</span> 1998</div><p>같은 자리에서 28년. <br>시간과 장소가 함께 쌓인 자리가 곧 우리의 테루아입니다.</p></div>
     </div>
   </div>
 </section>
@@ -457,7 +468,7 @@
 <section class="section" id="product">
   <div class="wrap">
     <div class="sec-head reveal"><span class="seal"><i>七<br>年</i></span><h2>단일 원산지 캐비어</h2></div>
-    <p class="sec-sub reveal">한 양식장에서 나온 알을, 알의 크기·숙성도에 따라 등급으로 나눕니다. 모든 등급은 <br> 동일한 7년과 동일한 손에서 나옵니다. (개별 판매 안내는 추후 오픈됩니다.)</p>
+    <p class="sec-sub reveal">한 양식장에서 나온 알을, 알의 크기·숙성도에 따라 등급으로 나눕니다. <br>모든 등급은 동일한 7년과 동일한 손에서 나옵니다. <br>(개인 판매 안내는 추후 오픈됩니다.)</p>
     <div class="grades reveal">
       <div class="grade">
         <div class="img"><img src="images/소재_캐비어_2.jpg" alt="시그니처 그레이드 캐비어"></div>
@@ -495,7 +506,7 @@
       <div class="it"><span class="seal"><i>七<br>年</i></span><h4>단일 직영 추적성</h4><p>모든 납품은 한 양식장에서. <br>입식·사육·채취 이력 추적 가능.</p></div>
       <div class="it"><span class="seal"><i>七<br>年</i></span><h4>그레이드 일관성</h4><p>알 크기·염도·숙성도 등급 기준을 문서로 보증.</p></div>
       <div class="it"><span class="seal"><i>七<br>年</i></span><h4>안정 물량</h4><p>대량·정기 납품을 위한 생산 계획·캘린더 협의.</p></div>
-      <div class="it"><span class="seal"><i>七<br>年</i></span><h4>양식 컨설팅</h4><p>25년 노하우 기반 사육·가공 기술 자문.</p></div>
+      <div class="it"><span class="seal"><i>七<br>年</i></span><h4>양식 컨설팅</h4><p>28년 노하우 기반 사육·가공 기술 자문.</p></div>
     </div>
     <div class="actions reveal">
       <a href="#contact" class="btn primary">대량납품 문의하기 <span class="ar">→</span></a>
@@ -509,7 +520,7 @@
   <div class="photo reveal"><img data-plx="0.08" src="images/소재_계산기.jpg" alt="양식 컨설팅"></div>
   <div class="copy reveal">
     <h3>철갑상어 양식, <br>처음부터 함께 설계합니다.</h3>
-    <p>입식·수계 관리·사육 주기·가공까지 — 25년간 한 자리에서 쌓은 운영 노하우를 컨설팅으로 제공합니다. 귀어·신규 양식 사업자를 위한 단계별 자문.</p>
+    <p>입식·수계 관리·사육 주기·가공까지 — 28년간 한 자리에서 쌓은 운영 노하우를 컨설팅으로 제공합니다. 귀어·신규 양식 사업자를 위한 단계별 자문.</p>
     <a href="#contact" class="link">컨설팅 상담 <span class="ar">→</span></a>
   </div>
 </section>
