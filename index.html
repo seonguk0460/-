@@ -196,11 +196,11 @@
   .trust .it h4{font-family:var(--serif);font-weight:500;font-size:16px;margin-bottom:9px}
   .trust .it p{font-size:13px;color:rgba(244,240,230,.62);line-height:1.6}
   .b2b .actions{margin-top:56px;display:flex;gap:16px;flex-wrap:wrap}
-  .btn{display:inline-flex;align-items:center;gap:10px;padding:16px 30px;border-radius:3px;font-weight:600;font-size:14.5px;transition:.2s}
+  .btn{display:inline-flex;align-items:center;gap:10px;padding:16px 30px;border:0;border-radius:3px;font-family:inherit;font-weight:600;font-size:14.5px;line-height:1.2;cursor:pointer;transition:.2s}
   .btn.primary{background:var(--cream);color:var(--ink)}
   .btn.primary:hover{background:#fff}
-  .btn.ghost{border:1.3px solid rgba(244,240,230,.5);color:var(--cream)}
-  .btn.ghost:hover{border-color:var(--cream);background:rgba(244,240,230,.08)}
+  .btn.ghost{border:1.3px solid rgba(125,143,136,.72);background:rgba(78,99,91,.58);color:var(--cream)}
+  .btn.ghost:hover{border-color:var(--cream);background:rgba(125,143,136,.82)}
 
   /* 컨설팅 짧은 밴드 */
   .consult{display:grid;grid-template-columns:1fr 1fr;gap:0;align-items:stretch}
@@ -209,7 +209,29 @@
   .consult .copy{padding:72px 56px;display:flex;flex-direction:column;justify-content:center}
   .consult .copy h3{font-family:var(--serif);font-weight:500;font-size:clamp(24px,3vw,32px);line-height:1.35;letter-spacing:-.01em}
   .consult .copy p{margin-top:18px;color:var(--muted);max-width:42ch;font-size:15px}
-  .consult .copy .link{margin-top:28px;display:inline-flex;align-items:center;gap:10px;font-weight:600;color:var(--slate);font-size:14.5px}
+  .consult .copy .link{margin-top:28px;display:inline-flex;align-items:center;gap:10px;padding:0;border:0;background:transparent;font-family:inherit;font-weight:600;color:var(--slate);font-size:14.5px;line-height:1.5;cursor:pointer}
+
+  /* 문의 모달 */
+  body.modal-open{overflow:hidden}
+  .contact-modal{position:fixed;inset:0;z-index:300;display:grid;place-items:center;padding:24px;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .25s ease,visibility .25s ease}
+  .contact-modal.open{opacity:1;visibility:visible;pointer-events:auto}
+  .contact-backdrop{position:absolute;inset:0;background:rgba(22,20,15,.58);backdrop-filter:blur(6px)}
+  .contact-panel{position:relative;width:min(100%,520px);background:var(--cream);border:1px solid var(--hair-d);border-radius:4px;box-shadow:0 28px 90px rgba(22,20,15,.35);padding:42px;color:var(--ink);outline:0;transform:translateY(14px);transition:transform .25s var(--ease-out)}
+  .contact-modal.open .contact-panel{transform:none}
+  .contact-close{position:absolute;top:16px;right:16px;width:36px;height:36px;border:1px solid var(--hair-d);border-radius:50%;background:transparent;color:var(--muted);font-family:var(--sans);font-size:24px;line-height:1;cursor:pointer}
+  .contact-close:hover{color:var(--ink);border-color:var(--ink)}
+  .contact-panel h2{margin-top:12px;font-family:var(--serif);font-size:clamp(24px,4vw,32px);font-weight:500;line-height:1.3;letter-spacing:-.01em}
+  .contact-panel p{margin-top:14px;color:var(--muted);font-size:15px;line-height:1.75}
+  .contact-info{margin-top:28px;border-top:1px solid var(--hair-d);border-bottom:1px solid var(--hair-d)}
+  .contact-info a{display:grid;grid-template-columns:96px 1fr;gap:18px;padding:17px 0;color:var(--ink)}
+  .contact-info a+a{border-top:1px solid var(--hair)}
+  .contact-info span{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--slate);font-weight:600}
+  .contact-info b{font-family:var(--lat);font-size:17px;font-weight:500;letter-spacing:.01em}
+  .contact-modal .contact-actions{margin-top:28px;display:flex;gap:12px;flex-wrap:wrap}
+  .contact-modal .btn.primary{background:var(--ink);color:var(--cream)}
+  .contact-modal .btn.primary:hover{background:var(--slate-deep)}
+  .contact-modal .btn.ghost{border:1.3px solid var(--hair-d);color:var(--ink);background:transparent}
+  .contact-modal .btn.ghost:hover{border-color:var(--ink);background:rgba(22,20,15,.04)}
 
   /* 푸터 */
   footer{background:var(--paper);border-top:1px solid var(--hair-d);padding:42px 0 0px}
@@ -220,8 +242,8 @@
   .foot-brand .nm{font-family:var(--serif);font-weight:600;font-size:19px}
   .foot-brand .tag{font-size:13.5px;color:var(--muted);margin-top:6px;max-width:30ch;line-height:1.6}
   .foot-col h5{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--slate);font-weight:600;margin-bottom:16px}
-  .foot-col a{display:block;font-size:14px;color:var(--muted);margin-bottom:10px;transition:color .2s}
-  .foot-col a:hover{color:var(--ink)}
+  .foot-col a,.foot-col button{display:block;margin-bottom:10px;padding:0;border:0;background:transparent;font-family:inherit;font-size:14px;line-height:1.7;text-align:left;color:var(--muted);cursor:pointer;transition:color .2s}
+  .foot-col a:hover,.foot-col button:hover{color:var(--ink)}
   .foot-bot{padding-top:32px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;font-size:12px;color:var(--muted)}
 
   .reveal{opacity:0;transform:translateY(20px)}
@@ -259,6 +281,10 @@
     .trust{grid-template-columns:1fr}
     .trust .it{border-right:0}
     .foot-top{grid-template-columns:1fr}
+    .contact-modal{align-items:end;padding:14px}
+    .contact-panel{padding:34px 24px 26px}
+    .contact-info a{grid-template-columns:1fr;gap:4px}
+    .contact-modal .contact-actions{display:grid}
   }
 
   /* ════════ MOTION LAYER — quiet, slow, premium ════════ */
@@ -509,8 +535,8 @@
       <div class="it"><span class="seal"><i>七<br>年</i></span><h4>양식 컨설팅</h4><p>28년 노하우 기반 사육·가공 기술 자문.</p></div>
     </div>
     <div class="actions reveal">
-      <a href="#contact" class="btn primary">대량납품 문의하기 <span class="ar">→</span></a>
-      <a href="#contact" class="btn ghost">스펙시트 · 등급표 요청</a>
+      <button type="button" class="btn primary contact-trigger" data-contact="wholesale">대량납품 문의하기 <span class="ar">→</span></button>
+      <button type="button" class="btn ghost contact-trigger" data-contact="spec">스펙시트 · 등급표 요청</button>
     </div>
   </div>
 </section>
@@ -521,7 +547,7 @@
   <div class="copy reveal">
     <h3>철갑상어 양식, <br>처음부터 함께 설계합니다.</h3>
     <p>입식·수계 관리·사육 주기·가공까지 — 28년간 한 자리에서 쌓은 운영 노하우를 컨설팅으로 제공합니다. 귀어·신규 양식 사업자를 위한 단계별 자문.</p>
-    <a href="#contact" class="link">컨설팅 상담 <span class="ar">→</span></a>
+    <button type="button" class="link contact-trigger" data-contact="consult">컨설팅 상담 <span class="ar">→</span></button>
   </div>
 </section>
 
@@ -543,8 +569,8 @@
         <h5>거래 문의</h5>
         <a href="#b2b">대량납품 (호텔·오마카세·법인)</a>
         <a href="#consult">양식 컨설팅</a>
-        <a href="#">스펙시트 · 등급표 요청</a>
-        <a href="#">전화 · 이메일 문의</a>
+        <button type="button" class="contact-trigger" data-contact="spec">스펙시트 · 등급표 요청</button>
+        <button type="button" class="contact-trigger" data-contact="general">전화 · 이메일 문의</button>
       </div>
     </div>
     <div class="foot-bot">
@@ -553,6 +579,24 @@
     </div>
   </div>
 </footer>
+
+<div class="contact-modal" id="contactModal" aria-hidden="true">
+  <div class="contact-backdrop" data-close-contact></div>
+  <section class="contact-panel" role="dialog" aria-modal="true" aria-labelledby="contactTitle" aria-describedby="contactDesc" tabindex="-1">
+    <button type="button" class="contact-close" data-close-contact aria-label="문의 창 닫기">×</button>
+    <span class="eyebrow">Contact</span>
+    <h2 id="contactTitle">문의하기</h2>
+    <p id="contactDesc">대표 전화 또는 이메일로 문의해 주세요.</p>
+    <div class="contact-info">
+      <a href="tel:050714152309"><span>Phone</span><b>0507-1415-2309</b></a>
+      <a href="mailto:kvg2002@meader.co.kr"><span>Email</span><b>kvg2002@meader.co.kr</b></a>
+    </div>
+    <div class="contact-actions">
+      <a class="btn primary" id="contactEmail" href="mailto:kvg2002@meader.co.kr">이메일 작성 <span class="ar">→</span></a>
+      <a class="btn ghost" href="tel:050714152309">전화 걸기</a>
+    </div>
+  </section>
+</div>
 
 <script>
 (function(){
@@ -640,6 +684,73 @@
     }
     addEventListener('scroll',function(){ if(!ticking){ticking=true;requestAnimationFrame(frame);} },{passive:true});
     frame();
+  }
+
+  /* 문의 모달 — GitHub Pages에서도 동작하는 mailto/tel 연결 */
+  var contactModal=document.getElementById('contactModal');
+  if(contactModal){
+    var contactPanel=contactModal.querySelector('.contact-panel');
+    var contactTitle=document.getElementById('contactTitle');
+    var contactDesc=document.getElementById('contactDesc');
+    var contactEmail=document.getElementById('contactEmail');
+    var lastFocus=null;
+    var contactMap={
+      wholesale:{
+        title:'대량납품 문의하기',
+        desc:'호텔·오마카세·법인 정기 납품 상담을 전화 또는 이메일로 연결합니다.',
+        body:'문의 유형: 대량납품 문의\n업체명:\n담당자명:\n연락처:\n희망 납품처/수량:\n문의 내용:\n'
+      },
+      spec:{
+        title:'스펙시트 · 등급표 요청',
+        desc:'캐비어 등급 기준, 포장 규격, 납품 조건 자료 요청을 연결합니다.',
+        body:'문의 유형: 스펙시트 · 등급표 요청\n업체명:\n담당자명:\n연락처:\n필요 자료:\n문의 내용:\n'
+      },
+      consult:{
+        title:'컨설팅 상담',
+        desc:'철갑상어 양식 입식, 수계 관리, 사육 주기, 가공 자문 상담을 연결합니다.',
+        body:'문의 유형: 컨설팅 상담\n성함/업체명:\n연락처:\n지역:\n상담 희망 내용:\n'
+      },
+      general:{
+        title:'전화 · 이메일 문의',
+        desc:'대표 전화와 대표자 이메일로 바로 문의하실 수 있습니다.',
+        body:'문의 유형: 전화 · 이메일 문의\n성함/업체명:\n연락처:\n문의 내용:\n'
+      }
+    };
+    function setMail(data){
+      var subject=encodeURIComponent('[철갑상어농장] '+data.title);
+      var body=encodeURIComponent(data.body);
+      contactEmail.href='mailto:kvg2002@meader.co.kr?subject='+subject+'&body='+body;
+    }
+    function openContact(kind){
+      var data=contactMap[kind]||contactMap.general;
+      lastFocus=document.activeElement;
+      contactTitle.textContent=data.title;
+      contactDesc.textContent=data.desc;
+      setMail(data);
+      contactModal.classList.add('open');
+      contactModal.setAttribute('aria-hidden','false');
+      document.body.classList.add('modal-open');
+      setTimeout(function(){contactPanel.focus();},0);
+    }
+    function closeContact(){
+      contactModal.classList.remove('open');
+      contactModal.setAttribute('aria-hidden','true');
+      document.body.classList.remove('modal-open');
+      if(lastFocus&&lastFocus.focus) lastFocus.focus();
+    }
+    document.querySelectorAll('.contact-trigger').forEach(function(btn){
+      btn.addEventListener('click',function(e){
+        e.preventDefault();
+        openContact(btn.dataset.contact);
+      });
+    });
+    contactModal.querySelectorAll('[data-close-contact]').forEach(function(btn){
+      btn.addEventListener('click',closeContact);
+    });
+    document.addEventListener('keydown',function(e){
+      if(e.key==='Escape'&&contactModal.classList.contains('open')) closeContact();
+    });
+    setMail(contactMap.general);
   }
 })();
 </script>
